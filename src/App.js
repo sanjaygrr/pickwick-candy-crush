@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import GameBoard from './components/GameBoard';
+import Menu from './components/Menu';
 import './App.css';
+import logo from './assets/logo.png';
 
 function App() {
+  const [gameStarted, setGameStarted] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!gameStarted ? (
+        <Menu onStart={() => setGameStarted(true)} />
+      ) : (
+        <>
+          <header className="App-header">
+            <img src={logo} alt="Pickwick Candy Crush" className="logo" />
+            <h1>Pickwick Candy Crush</h1>
+          </header>
+          <GameBoard />
+        </>
+      )}
     </div>
   );
 }
